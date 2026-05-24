@@ -9,7 +9,7 @@ services:
     networks:
       - mynetwork
     volumes:
-      - Docker-db:/etc/bin
+      - Docker-db
     environment:
       username: admin
       password: admin@123
@@ -33,7 +33,7 @@ services:
     networks:
       - mynetwork
     volumes:
-      - Docker-app:/etc/bin
+      - Docker-app
     environment:
       username: admin
       password: admin@345
@@ -48,11 +48,11 @@ services:
             memory: 64M
     depends_on:
       - devopsdb
-
+      
 networks:
   mynetwork:
     driver: overlay
 
 volumes:
-  Docker-app:
   Docker-db:
+  Docker-app:
