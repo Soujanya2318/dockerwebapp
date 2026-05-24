@@ -8,8 +8,21 @@ services:
       - "3306:3306"
     networks:
       - mynetwork
+    volumes:
+      - Docker-db/etc/bin
+    environment:
+      username: admin
+      password: admin@123
     deploy:
       replicas: 3
+      resources:
+         limits:
+           cpu: "0.5"
+           memory: 128M
+         reservation: 
+            limits: "0.25"
+            memory: 64M
+      
 
   application:
     image: allakondaswapna/project:app
@@ -17,11 +30,27 @@ services:
       - "1111:8080"
     networks:
       - mynetwork
+    volumes:
+      - Docker-app/etc/bin
+    environment:
+      username: admin
+      password: admin@345
     deploy:
       replicas: 3
+      resources:
+         limits:
+           cpu: "0.5"
+           memory: 128M
+         reservation: 
+            limits: "0.25"
+            memory: 64M
     depends_on:
       - devopsdb
 
 networks:
   mynetwork:
     driver: overlay
+
+volumes:
+  Docker-app:
+  Docker-db:
