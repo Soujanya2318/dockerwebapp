@@ -1,27 +1,36 @@
 ---
 version: "3.9"
-services:
- devopsdb:
-   image: allakondaswapna/automation:db
-   ports:
-     - "3306:3306"
-   networks:
-     - mynetwork
-   deploy:
-     replicas: 3
-    
 
- application:
-   image: allakondaswapna/automation:app
-   ports:
-     - "1111:8080"
-   networks:
-     - mynetwork
-   deploy:
-     replicas: 3
-   depends_on:
-     - "devopsdb"
+services:
+
+  devopsdb:
+    image: allakondaswapna/automation:db
+
+    ports:
+      - "3306:3306"
+
+    networks:
+      - mynetwork
+
+    deploy:
+      replicas: 3
+
+  application:
+    image: allakondaswapna/automation:app
+
+    ports:
+      - "1111:8080"
+
+    networks:
+      - mynetwork
+
+    deploy:
+      replicas: 3
+
+    depends_on:
+      - devopsdb
 
 networks:
-     - mynetwork:
-         driver: overlay 
+
+  mynetwork:
+    driver: overlay
