@@ -17,7 +17,7 @@ services:
       replicas: 3
       resources:
          limits:
-           cpu: "0.5"
+           cpus: "0.5"
            memory: 128M
          reservation: 
             limits: "0.25"
@@ -39,7 +39,7 @@ services:
       replicas: 3
       resources:
          limits:
-           cpu: "0.5"
+           cpus: "0.5"
            memory: 128M
          reservation: 
             limits: "0.25"
