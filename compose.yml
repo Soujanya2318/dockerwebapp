@@ -1,25 +1,18 @@
 version: "3.9"
-
 services:
-
   devopsdb:
-    image: allakondaswapna/project:db
+    image: malyalasoujanya/auto:db
     ports:
       - "3306:3306"
-    networks:
-      - mynetwork
+    deploy:
+     replicas:3
     
 
   application:
-    image: allakondaswapna/project:app
+    image: malyalasoujanya/auto:app
     ports:
-      - "2222:8080"
-    networks:
-      - mynetwork
+      - "1111:8080"
+    deploy:
+     replicas:3
     depends_on:
-      - devopsdb
-
-networks:
-  mynetwork:
-    driver: overlay
-
+      - "devopsdb"
